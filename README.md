@@ -1,6 +1,6 @@
 # Ghost dynamic image resizing
 
-![](ghost-image-resize.png)
+![](https://bytebucket.org/melistik/ghostimageresize/raw/7a07d09a2927f2f34b69f542ec3d0f9a5779addd/ghost-image-resize.png)
 
 The following little tool help's you to solve the missing feature in [ghost](https://github.com/TryGhost/Ghost) of image resizing. I guess they have it on their roadmap but until it's implemented this little tool helps.
 
