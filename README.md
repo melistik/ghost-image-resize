@@ -1,5 +1,7 @@
 # Ghost dynamic image resizing
 
+![](ghost-image-resize.png)
+
 The following little tool help's you to solve the missing feature in [ghost](https://github.com/TryGhost/Ghost) of image resizing. I guess they have it on their roadmap but until it's implemented this little tool helps.
 
 ## How it works
