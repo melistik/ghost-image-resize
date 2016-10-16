@@ -1,6 +1,6 @@
 <?php
 
-include('SimpleImage.php');
+include('SimpleImage/src/abeautifulsite/SimpleImage.php');
 
 /* ----------------- CONFIG ----------------- */
 
@@ -45,6 +45,13 @@ if (isset($url['query'])) {
 $option_folder_name = ($image_options["width"] != null ? $image_options["width"] : "")."x".($image_options["height"] != null ? $image_options["height"] : "");
 $cache_file = "$document_root/$cache_path/$option_folder_name/$image_folder";
 $source_file = "$image_root/$image_folder";
+
+// return original file if no argument
+if (isset($url['query']) == false) {
+  $imgCache = new abeautifulsite\SimpleImage($source_file);
+  $imgCache->output();
+  exit();
+}
 
 // does the $cache_path directory exist already?
 if (!is_dir("$document_root/$cache_path")) {
