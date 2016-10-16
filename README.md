@@ -21,11 +21,20 @@ RewriteRule ^/?(.*) http://im-cache.mpriess.de/im-cache.php/$1 [R=307,L]
 
 Example of the configuration for Nginx
 ```
-location ~ /content/images/(.+)\.(png|jpg|gif)$ {
-    fastcgi_pass unix:/run/php/php7.0-fpm.sock;
-    fastcgi_param PATH_INFO $1.$2;
-    fastcgi_param SCRIPT_FILENAME [absolute path to im-cache]/im-cache.php;
-    include fastcgi_params;
+location ~ /content/images/(.+)\.(png|jpg|jpeg|gif)$ {
+  if ($args = '') {
+    rewrite ^/content/(.*)$ /_content/$1 last;
+  }
+
+  fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+  fastcgi_param PATH_INFO $1.$2;
+  fastcgi_param SCRIPT_FILENAME [absolute path to im-cache]/im-cache.php;
+  include fastcgi_params;
+}
+
+location /_content {
+  internal;
+  alias [absolute path to ghost root]/content/;
 }
 ```
 
