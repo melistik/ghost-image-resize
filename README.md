@@ -47,8 +47,6 @@ The list of possible paramerts:
 * **q** for the quality
   * value between 0-100
 
-**If no paramater is provided, the original image is returned**
-
 ## How to integrate it in your theme
 
 Mainy you have the possibility to set default values for all parameters in the php-script (im-cache.php). This allows you to control the default image resizing when nothing is set. The are propably the normal image outputs within  the single post site. 
