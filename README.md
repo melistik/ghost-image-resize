@@ -8,7 +8,7 @@ The following little tool help's you to solve the missing feature in [ghost](htt
 
 Mainly your blog will distribute the images from it's content-folder. So "content/images/..." will get accessed. By a little Mod-Rewrite it hooks in this request and redirects to a script that handels the image request for **jpg, png, gif**. It have implemented some options in order to control the distributed size of the images. By Parameter's you can control the hight, width and quality. Furthermore you can add a paramter in order to disable the hook to distribute the original images.
 
-Example of the configures mod-rewrite
+Example of the configures mod-rewrite for Apache
 
 ```
 RewriteEngine On
@@ -17,6 +17,25 @@ RewriteCond %{REQUEST_URI} ^/content/images/(.*)\.(jpg|jpeg|png|gif)$
 RewriteCond %{QUERY_STRING} !^ignore$
 RewriteRule ^/?(.*) http://im-cache.mpriess.de/im-cache.php/$1 [R=307,L]
 
+```
+
+Example of the configuration for Nginx
+```
+location ~ /content/images/(.+)\.(png|jpg|jpeg|gif)$ {
+  if ($args = '') {
+    rewrite ^/content/(.*)$ /_content/$1 last;
+  }
+
+  fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+  fastcgi_param PATH_INFO $1.$2;
+  fastcgi_param SCRIPT_FILENAME [absolute path to im-cache]/im-cache.php;
+  include fastcgi_params;
+}
+
+location /_content {
+  internal;
+  alias [absolute path to ghost root]/content/;
+}
 ```
 
 The list of possible paramerts:

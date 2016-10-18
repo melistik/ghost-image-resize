@@ -1,0 +1,3 @@
+[submodule "SimpleImage"]
+	path = SimpleImage
+	url = https://github.com/claviska/SimpleImage

@@ -1,6 +1,6 @@
 <?php
 
-include('SimpleImage.php');
+include('SimpleImage/src/abeautifulsite/SimpleImage.php');
 
 /* ----------------- CONFIG ----------------- */
 
